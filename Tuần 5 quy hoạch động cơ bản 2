@@ -1,0 +1,262 @@
+// Cho 1 dãy số nguyên gồm n phần tử a1,a2,....,an.
+// tìm giá trị lớn nhất của (aj - ai) với 1 <= i < j <= n 
+// Dòng đầu gồm duy nhất một số nguyên dương n (n <= 10^6)
+// Dòng thứ 2 gồm N số nguyên a1,a2,...,an (|ai| <= 10^9)
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[nmax] ,n , mi[nmax], res = -1e18;
+int main()
+{
+    cin>>n;
+    mi[0] = 1e18;
+    for(int i = 1 ; i <= n ; i++ )
+    {
+        cin>>a[i];
+        mi[i] = min(mi[i-1], a[i]) ;
+    }
+    // để a[j] - a[i] lớn nhất thì a[i] nhỏ nhất với i<j
+    for(int j = 2 ; j <= n ; j++)
+    {
+        res = max(res , a[j] - mi[j-1]);
+    }
+    cout<<res;
+}
+
+          -------------------------------------------------------------------------------------------------
+
+
+// Hiện tại vì vấn đề tài chính nên anh A đang cần bán miếng đất mà a đang sở hữu. Miếng đất của anh chỉ có giá trong N năm, biết năm thứ i nếu
+   anh A bán đất, anh sẽ nhận được một lượng tiền là Ci còn nếu anh A mua đất thì sẽ phải trả một lượng tiền cũng là Ci.
+// Hãy tính giúp anh A xem anh A có thể lời nhiều nhất bao nhiêu tiền nếu như anh A quyết định bán đất của mình vào một năm và sau đó lại mua lại
+   đất của mình vào một năm nào đó sau năm anh A đã bán đất.
+// Dòng đầu tiên gồm 1 số nguyên dương n <= 10^6 là số năm mà miếng đất có giá
+// Dòng thứ hai gồm N số nguyên dương kiểu 32 bit, số thứ i là giá miếng đất ở năm thứ i.
+// In ra số tiền lớn nhất mà anh A có thể nhận được. Nếu như không thể lời, hãy in ra “-1”.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000005
+ll a[nmax] , n , f[nmax] , res = -1e18;
+int main()
+{
+    cin>>n;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin >> a[i];
+        f[i] = max(f[i-1] , a[i]);
+    }
+    for(int i = 1 ; i <= n ; i++)
+    {
+        res = max(res,f[i]-a[i]);
+    }
+    if(res == 0) cout<<-1;
+    else 
+        cout<<res;
+
+}
+
+          -----------------------------------------------------------------------------------------------------------------
+
+// Sau một thời gian học code thấy không ăn thua, Mạnh và Thành quyết định đi buôn kiếm lời. Hai bạn đầu tư tiền mua một miếng đất dự án. Tuy
+   nhiên, sau một thời gian thì giá bất động sản cũng nhảy múa liên tục, lúc lên, lúc xuống. Vì vậy hai bạn quyết định chỉ chọn 2 thời điểm để bán và
+   mua. Họ quyết định bán nhà trước và sau đó mua lại với giá rẻ hơn để kiếm lời. Nghĩ đi nghĩ lại mãi, cuối cùng hai bạn lại bắt tay vào code để tìm
+   phương án tốt nhất. Cho một dãy n số nguyên dương ai tương ứng là giá bất động sản tại thời điểm i . Hãy in ra số tiền lời tốt nhất mà hai bạn
+   kiếm được sau khi bán trước và mua sau. Nếu không có lời thì in ra - 1.
+// Dòng đầu ghi số nguyên n (0 <= n <= 10^5)
+// Dòng thứ hai lần lượt ghi a1,a2,..,an. Là giá nhà tại các thời điểm từ 1 đến n 
+// In ra số tiền lời 
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000005
+ll a[nmax] , n , f[nmax] , res = -1e18;
+int main()
+{
+    cin>>n;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin >> a[i];
+        f[i] = max(f[i-1] , a[i]); // số tiền lớn nhất bán được 
+    }
+    for(int i = 1 ; i <= n ; i++)
+    {
+        res = max(res,f[i]-a[i]); // số tiền thu lời lớn nhất
+    }
+    if(res == 0) cout<<-1;
+    else
+        cout<<res;
+
+}
+
+          ----------------------------------------------------------------------------------------------------
+
+// Cho dãy số nguyên a gồm n phần tử a1,a2,...an và số nguyên k 
+// Hãy đếm xem có bao nhiêu đoạn con liên tiếp có tổng đúng bằng k
+// Dòng đầu chứa số nguyên dương n và số nguyên k  
+// Dòng 2 chứa n số nguyên mô tả dãy a 
+// n <= 5000      |ai| <= 10^15      k <= 10^18
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000005
+ll a[nmax] , b[nmax] , k , n , d=0;
+ int main()
+ {
+     cin >> n >>k;
+     for(int i = 1 ; i <= n ; i++)
+     {
+         cin>>a[i];
+         b[i] = b[i-1] + a[i];
+     }
+     for(int i = 1 ; i <= n ; i++)
+     {
+         for(int j = i+1 ; j <= n ; j++)
+         {
+             if(b[j] - b[i-1] == k) d++;
+         }
+     }
+     cout<<d;
+ }
+
+
+          ----------------------------------------------------------------------------------------
+
+// Một khu sân chơi hình chữ nhật có kích thước 2 x n , người ta muốn lát sân bằng các viên gạch hình chữ nhật có kích thước 2 x 1 và 1 x 2 
+// Hãy đếm số cách lát gạch khác nhau cho khu sân chơi trên.
+// Gồm một dòng chứa số nguyên dương n (n <= 10^6) là độ dài sân chơi
+// In ra số cách lát theo yêu cầu. Vì kết quả là số rất lớn nên chỉ cần in ra phần dư của kết quả chia cho 10^9 + 7.
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll f[nmax] , n , k=1e9+7;
+int main()
+{
+    cin>>n;
+    f[1] = f[0] = 1;
+    for(int i=2;i<=n;i++)
+    {
+        f[i] = (f[i-1] + f[i-2])%k ;
+    }
+    cout<<f[n] ;
+}
+
+
+          ------------------------------------------------------------------------------------------
+
+// Cho 1 dãy số nguyên gồm n phần tử a1,a2,...,an.
+// Chọn ra một tập gồm các phần tử trong dãy (tập hợp có thể rỗng) sao cho không có hai phần tử nào kề nhau và có tổng các số trong tập hợp là
+   lớn nhất có thể. In ra tổng của tập hợp tìm được (nếu là tập rỗng thì tổng bằng 0).
+// Dòng đầu gồm duy nhất một số nguyên dương n (n <= 10^5)
+// Dòng thứ 2 gồm n số nguyên a1,a2,...,an (|ai| <= 10^9)
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000005
+ll f[nmax] , n ,a[nmax] ;
+int main()
+{
+    cin>>n;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin>> a[i] ;
+    }
+    f[1] = a[1] ;
+    f[2] = a[2] ;
+    for(int i = 3 ; i <= n ; i++)
+    {
+        f[i] = max( max(f[i-2] + a[i] , f[i-1]) , max(f[i-2] , a[i])) ;
+    }
+    cout<< f[n] ;
+}
+
+
+          -------------------------------------------------------------------------------------
+
+// Cho mảng a có kích thước n 
+// Hãy tính tổng lớn nhất của k phần tử liên tiếp trong mảng 
+// VD: cho mảng A = 100,200,300,400,k = 2.       => ans = 700.
+// Dòng 1 ghi số nguyên n và k (0< k < n < 10^6 )
+// Dòng 2 ghi n số nguyên dương a1,a2,...an.
+// Ghi ra tổng lớn nhất của k phần tử liên tiếp trong dãy.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll  n, k, a[nmax], d = 0 , sum = 0 ;
+int main()
+{
+   cin>>n>>k;
+   for(int i = 1 ; i <= n ; i++)
+   	cin>>a[i];
+   for(int i = 1 ; i < k ; i++)
+   	{
+   		d += a[i] ;           // tính tổng k phần tử ở đầu
+   	}	
+   	sum = d;
+   	for(int i = k ; i <= n ; i++)
+   	{
+   		d = d - a[i-k] + a[i] ;              // di chuyển và tính tổng mới
+		if(d>sum) sum = d; 	
+   	}
+   	cout << sum;
+}
+
+          ---------------------------------------------------------------------------------------
+
+// TRIPATH – ĐƯỜNG ĐI TRÊN TAM GIÁC
+//                                             7
+//                                          3     8
+//                                        8    1    0
+//                                      2   7     4    4
+//                                    4   5    2    6    5
+// Hình trên mô tả một tam giác số có số hàng n = 5. Đi từ đỉnh (số 7) đến đáy tam giác bằng một
+   được gấp khúc, mỗi bước chỉ được đi từ số ở hàng trên xuống một trong hai số đứng kề bên phải
+   hoặc bên trái ở hàng dưới, và tính tổng các số trên đường đi lại ta thu được một tổng.
+// Ví dụ: Đường đi (7, 8, 1, 4, 6) có tổng là S = 26. Đường đi (7, 3, 1, 7, 5) có tổng là S = 23
+// Yêu cầu: Cho tam giác số, tìm đường đi có tổng lớn nhất
+// Dòng đầu tiên là số nguyên n (1 ≤ n ≤ 100)
+// n dòng tiếp theo, từ dòng thứ 2 đến dòng thứ n + 1: dòng thứ i có (i − 1) số nguyên có giá
+   trị từ 0 đến 99
+
+
+#include <bits/stdc++.h>
+using namespace std ;
+#define ll long long
+#define nmax 1005
+ll f[nmax][nmax] ,n , sum = -1e9;
+int main()
+{
+    cin >> n;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        for(int j = 1 ; j <= i ; j++)
+        {
+            cin >> f[i][j] ;
+        }
+    }
+    for(int i = 1 ; i <= n ; i++)
+    {
+        for(int j = 1 ; j <= n ; j++)
+        {
+            f[i][j] += max(f[i-1][j-1],f[i-1][j]) ;      // a[i][j] đánh dấu đường đi lớn nhất
+        }
+    }
+    for(int i = 1 ; i <= n ; i++)
+        sum = max(sum , f[n][i]) ;
+    cout<<sum;
+}
+
