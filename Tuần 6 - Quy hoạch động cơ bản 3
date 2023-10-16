@@ -1,0 +1,394 @@
+// Em hãy viết chương trình nhập từ bàn phím xâu s ghi ngày tháng dạng dd/mm/yyyy, trong đó dd là hai kí tự chỉ ngày, mm là hai kí tự chỉ tháng,
+   yyyy là bốn kí tự chỉ năm. Sau đó đưa ra ngày tháng năm dưới dạng xâu.
+
+// cách 1 
+#include <bits/stdc++.h>
+using namespace std;
+string s;
+int main()
+{
+	cin>> s;
+	cout<< "Ngay " << s[0] << s[1] << " thang " << s[3] << s[4] << " nam " << s[6] << s[7] << s[8] << s[9];
+	
+}
+
+// cách 2
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+string s ;
+vector<string> a;
+int main()
+{
+    string st ;
+    cin >> s ;
+    for(auto x:s)
+    {
+        if(x != '/') st += x;
+        else
+        {
+            a.push_back(st);
+            st="";
+        }
+    }
+    a.push_back(st);
+    cout<<"Ngay " <<a[0] <<" thang " <<a[1]<< " nam " <<a[2] ;
+}
+
+
+          -----------------------------------------------------------------------------------------------------------------
+
+// Một ngày nọ, Takahashi quyết định xem kết quả các trận chung kết của Giải V league. Thật không may anh ấy đã không tìm thấy tỉ số cuối cùng
+   của trận đấu, tuy nhiên anh ấy biết được quá trình của trận đấu. Quá trình của trận đấu được ghi lên một tờ giấy gồm n dòng, mỗi dòng mô tả một
+   bàn thắng được viết bằng tên của đội bóng ghi bàn thắng đó.
+// Các bạn hãy giúp Takahashi tìm đội thắng chung cuộc của trận đấu, biết rắng trận đấu không kết thúc với tỉ số hòa.
+// Dòng đầu tiên ghi số nguyên n ( n<= 100 )
+//  n dòng tiếp theo, mỗi dòng một xâu kí tự chứa các kí tự in hoa biểu thị tên đội bóng ghi bàn (độ dài tên không quá 10 kí tự).
+// In ra tên đội thắng chung cuộc.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+map<string,int> mp;
+int x = 0 , n  ;
+string a[101] ;
+int main()
+{
+    cin >> n ;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin >> a[i];
+        mp[a[i]]++;
+        x = max(x,mp[a[i]]) ;
+    }
+    for(int i = 1 ; i <= n ; i++)
+    {
+        if(mp[a[i]]==x)
+        {
+            cout<<a[i];
+            return 0;
+        }
+
+    }
+}
+
+
+
+          ------------------------------------------------------------------------------------------------------------------
+
+
+// Cho một xâu S chỉ gồm các chữ cái in thường. Cách nén xâu S như sau:
+    Lấy các kí tự liền nhau, giống nhau, các kí tự X này lặp lại K lần.
+    Ghép K và X, cứ thực hiện như thế ta thu được xâu nén của S.
+// vd : Xâu nén của aaaa là 4a , Xâu nén của abca là 1a1b1c1a
+// Gồm một dòng duy nhất chứa xâu S có độ dài không quá 1000.
+// In ra : Xâu nén của xâu S.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define st string 
+#define ll long long
+st s;
+ll d=1;
+int main()
+{
+	cin>>s;
+	for(int i=0;i<=s.size()-1;i++)
+	{
+		if(s[i]==s[i+1]) d++;
+		else 
+		{
+			cout<<d<<s[i];
+			d=1;
+		}
+	}
+}
+
+
+
+          ----------------------------------------------------------------------------------------------------------------
+
+// Sau khi tiến hành nén xâu thì bây giờ ta sẽ thực hiện việc giải nén.
+// Một xâu kí tự S gồm các chữ số và kí tự ghép lại với nhau. Cứ mỗi cặp NX sẽ cho chúng ta biết số lượng N kí tự X gần nhau. Việc của chúng ta là sẽ giải nén xâu S.
+// vd : Xâu 2a3b sau khi giải nén là aabbb
+// Gồm một dòng duy nhất chứa xâu S có độ dài không quá 1000.
+// In ra : Xâu S sau khi giải nén.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define st string 
+#define ll long long
+st s;
+ll d=0;
+int main()
+{
+	cin>>s;
+	for(int i=0;i<=s.size()-1;i++)
+	{
+		if(s[i] >= '0' and s[i] <= '9')
+			d=d*10+s[i]-'0';
+		else
+		{
+			for(int j = 1 ; j <= d ; j++)
+				cout<<s[i];
+			d=0;
+		}
+	}
+}
+
+
+
+          ----------------------------------------------------------------------------------------------------------------
+
+
+// Cho một xâu độ dài chẵn chỉ gồm các cặp: 1 chữ số X và 1 kí tự C (từ a tới z) viết liên tiếp thể hiện có X kí tự C được viết và nén lại trong xâu.
+// Ví dụ xâu 2a3b4c là xâu nén của xâu aabbbcccc
+// Cho xâu S. Đưa ra số tự nhiên là độ dài của đoạn liên tiếp dài nhất chỉ gồm các kí tự giống nhau.
+// Nhập vào một xâu có độ dài không dài hơn 100 kí tự.
+// Đưa ra kết quả của bài toán.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define st string
+#define fr(i,l,r) for(int i=l;i<r;i++)
+#define i cin
+#define o cout
+#define bd int main()
+#define speed ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+st k="";
+st x;
+ll d=1, kq;
+ll chuyen(string f)
+{
+    int s=0;
+    fr(i,0,f.size())
+    {
+        s=s*10+f[i]-'0';
+    }
+    return s;
+}
+bd
+{
+    string s;
+    i>>s;
+    fr(i,0,s.size())
+    {
+        if(s[i]>='0' and s[i]<='9')
+        {
+            k=k+s[i];
+        }
+        else
+        {
+            fr(j,1,chuyen(k)+1) x += s[i];
+            k="";
+        }
+    }
+    fr(i,0,x.size())
+    {
+        if(x[i]==x[i+1])
+        {
+            d++;
+        }
+        else {
+            kq=max(kq,d);
+            d=1;
+        }
+    }
+    o<<kq;
+}
+
+
+
+          ----------------------------------------------------------------------------------------------------------------
+
+
+
+// Cho xâu ký tự X, từ X ta lấy ra các ký tự mà giữ nguyên thứ tự thì ta được một xâu con của X
+  VD : cho X = abcdabc  thì các xâu abc, abda, bcd, dabc đều là xâu con của X
+// Cho hàm hai xâu S và T có độ dài lần lượt là m và n . Hay tìm xâu con chung dài nhất của hai xâu S và xâu T
+// Dòng đầu ghi 2 số nguyên dương m , n ( 0 < m,n <= 2500 )
+// Dòng thứ 2 ghi xâu S.
+// Dòng thứ 3 ghi xâu T.
+// In ra độ dài xâu con chung dài nhất của S và T.
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define st string 
+#define ll long long
+#define fr(i,l,r) for(int i=l;i<=r;i++)
+#define speed ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+#define i cin
+#define o cout
+#define bd int main()
+ll m , n , f[2500][2500];
+st a , b;
+bd
+{
+	speed
+	i >> m >> n ;
+	i >> a >> b ;
+	fr(i,0,m)
+	{
+		fr(j,0,n)
+		{
+			if(a[i]==b[j])
+				f[i+1][j+1] = f[i][j] + 1;
+			else
+				f[i+1][j+1] = max(f[i+1][j] , f[i][j+1]);
+		}
+	}
+	o << f[m][n] ;
+	
+}
+
+
+
+           ---------------------------------------------------------------------------------------------------------------
+
+
+
+// Cho xâu ký tự X, từ X ta lấy ra các ký tự mà giữ nguyên thứ tự thì ta được một xâu con của X
+// vd cho X = abcdabc thì các xâu abc , abda , bcd , dabc , abcd đều là xâu con liên tiếp của X
+// Cho hàm hai xâu S và T có độ dài lần lượt là m và n ( 0 < m,n <= 5000 ) . Hay tìm xâu con chung liên tiếp dài nhất của hai xâu S và xâu T
+// Dòng thứ 1 ghi xâu S.
+// Dòng thứ 2 ghi xâu T.
+// In ra độ dài xâu con chung liên tiếp dài nhất của S và T
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define st string
+#define nmax 5000
+ll dp[nmax][nmax] , mx = 0;
+int main()
+{
+    st s , t ;
+    cin>>s>>t;
+    ll m = s.size();
+    ll n = t.size();
+    for(int i = 1 ; i <= m ; i++)
+    {
+        for(int j = 1 ; j <= n ; j++)
+        {
+            if(s[i-1] == t[j-1])
+            {
+                dp[i][j] = dp[i-1][j-1] + 1;
+            }
+            mx = max(mx,dp[i][j]);
+        }
+    }
+    cout << mx;
+}
+
+
+
+            --------------------------------------------------------------------------------------------------------------
+
+
+// Xâu con S được gọi là xâu con không liền kề của T nếu S được tạo ra từ các kí tự không liền kề nhau trong xâu T . Nghĩa là xâu S chứa các kí tự có chỉ số i1,i2,...,ik.
+   sao cho:   -     1 <= i1,i2,...,ik <= |T|
+              -     i1 < i2 - 1 , i2 < i3 - 1 ,... , i(k-1) < ik - 1
+              -     s1 = ti1 , s2 = ti2 ,..., sk = tik
+// Cho hai xâu x và y hãy tìm xâu con chung không liền kề dài nhất của x và y (vừa là xâu con không liền kề của x , vừa là xâu con không liền kề của y).
+// Dòng thứ nhất chứa xâu x
+// Dòng thứ hai chứa xâu y
+// Độ dài hai xâu không quá 4000
+// In ra một số nguyên là độ dài xâu con chung không liền kề dài nhất.
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define st string
+#define nmax 5000
+ll dp[nmax][nmax] , mx = 0;
+int main()
+{
+    st s , t ;
+    cin>>s>>t;
+    ll m = s.size();
+    ll n = t.size();
+    s= ' ' + s;
+    t= ' ' + t;
+    for(int i = 1 ; i <= m ; i++)
+    {
+        for(int j = 1 ; j <= n ; j++)
+        {
+            if(s[i]==t[j])
+            {
+                if(i==1 || j==1) dp[i][j] = 1;
+                else dp[i][j] = dp[i-2][j-2] + 1;
+            }
+            else
+            {
+                dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+    }
+    cout << dp[m][n];
+}
+
+
+
+           ---------------------------------------------------------------------------------------------------------------
+
+
+
+// Bạn được cung cấp hai xâu a và b chỉ chứa kí tự thường. Bạn có thể thực hiện vô số lần với bất kì thứ tự nào với các thao tác sau: 
++   Nếu |a| > 0 (độ dài của xâu a lớn hơn 0), xóa kí tự đầu của xâu a, xâu a sẽ trở thành a2,a3,...,an.
++   Nếu |a| > 0 xóa kí tự cuối của xâu a, xâu a sẽ trở thành a1,a2,...,a(n-1).
++   Nếu |b| > 0 (độ dài của xâu b lớn hơn 0), xóa kí tự đầu của xâu b, xâu b sẽ trở thành b2,b3,...,bn.
++   Nếu |b| > 0 xóa kí tự cuối của xâu b, xâu b sẽ trở thành b1,b2,...,b(n-1).
+// Chú ý rằng sau khi thực hiện thao tác, xâu a hoặc b có thể rỗng.
+// Hãy viết chương trình tìm số thao tác nhỏ nhất để xâu a bằng xâu b. Chú ý hai xâu rỗng luôn luôn bằng nhau.
+// Dòng đầu tiên ghi một số nguyên t là số lượng testcase.
+// Dòng đầu tiên chứa xâu a ( |a| <= 20 )
+// Dòng đầu tiên chứa xâu b ( |b| <= 20 )
+// Với mỗi testcase, in ra số thao tác nhỏ nhất để a và b bằng nhau.
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define st string
+#define nmax 25
+ll dp[nmax][nmax] , mx = 0;
+int main()
+{
+    st a , b ;
+    ll t;
+    cin>>t;
+    while(t--)
+	{ 
+   		cin>>a>>b;
+    	ll m = a.size();
+    	ll n = b.size();
+    	memset(dp,0,sizeof(dp)) ;
+    	for(int i = 1 ; i <= m ; i++)
+    	{
+       	 for(int j = 1 ; j <= n ; j++)
+        	{
+           	 	if(a[i-1] == b[j-1])
+           		 {
+             	   dp[i][j] = dp[i-1][j-1] + 1;
+           		 }
+           		 mx = max(mx,dp[i][j]);
+      	  }
+    	}
+    	cout << m - mx + n - mx << endl ;
+    	mx=0;
+	
+    	
+    }
+}
