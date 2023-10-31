@@ -1,0 +1,406 @@
+TRUNG BÌNH CỘNG 
+Takahashi vừa học xong chuyên đề “Trung bình cộng” và được thầy giáo cho một bài tập về nha. Bài tập như sau: Cho một dãy số gồm n số
+nguyen, hãy tìm đoạn con của dãy sao cho trung bình cộng của dãy con đó là lớn nhất có thể.
+Các bạn hãy viết một chương trình tìm trung bình cộng lớn nhất đó để giúp Takahashi có thể nhanh chóng đi chơi nào!
+Dòng đầu tiên gồm một số nguyên dương n (1 <= n <= 10^5)
+Dòng thứ hai gồm n số nguyên dương ai (1 <= ai <= 10^5)
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[nmax] , n , k = 0;
+int main()
+{
+    cin >> n ;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin>>a[i];
+        k = max(k,a[i]);         // Vì trung bình cộng của một mảng con luôn bé hơn hoặc bằng số lớn nhất => tìm a[i] max là kết quả
+    }
+    cout<<k;
+
+
+}
+
+
+              -------------------------------------------------------------------------------------------------------------
+
+THỨ TỰ HÀNG NGŨ 
+Michael là tướng quân cấp cao của quân đội SSS (Super Secret Squad). Để tiện cho việc duyệt binh, ông ấy ra lệnh cho tất cả n người lính xếp thành 1 hàng.
+Ban đầu, các người lính không có nhiều thời gian để chỉnh đốn hàng ngũ, thường sẽ xếp hàng không theo thứ tự nhất định. Michael không thích
+như vậy, ông cho rằng những người lính phải xếp hàng chính xác theo quy tắc là người đầu hàng có chiều cao tối đa và cuối hàng là người lính có
+chiều cao tối thiểu, những người lính ở giữa như thế nào không quan trọng. Chỉ có chiều cao của người lính đầu tiên và cuối cùng là quan trọng.
+Ví dụ * Hàng đúng: 4 3 4 2 1 1 * Hàng sai : 4 3 1 2 2
+Trong vòng 1 giây, chỉ có thể hoán đổi 2 người lính lân cận bất kỳ. Hãy giúp Michael đếm thời gian tối thiểu cần thiết để tạo thành môt đội hình mà ông ấy cho là đúng.
+Dòng đầu tiên chứa số nguyên duy nhất n (2 <= n <= 100) số lượng lính
+Dòng thứ hai chứa các số nguyên a1,a2,...,an (1 <= ai <= 100) là giá trị chiều cao của binh sĩ.
+In ra số nguyên duy nhất là thời gian tối thiểu (s) mà Michael cần để tạo thành đội hình vừa ý.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[nmax], n, x = 0 , y = 0 , m =-1e18, k=1e18;
+int main()
+{
+    cin >> n;
+    for(int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+        m = max(m, a[i]);
+        k = min(k, a[i]);
+    }
+    for(int i = 1; i <= n; i++)
+    {
+        if(a[i] == m && x==0) x=i;
+        if(a[i] == k) y=i;
+    }
+    if(x < y) cout<< x-1+n-y;
+    else cout << n-y+x-2;
+}  
+
+
+              -------------------------------------------------------------------------------------------------------------
+
+
+  TỔNG ĐỘ LỚN CAO NHẤT 
+Bình đố An một bài toán. Bình sẽ cho một dãy số gồm n số nguyên là độ cao của các địa điểm so với mực nước biển, chú ý rằng có những nơi thấp
+hơn mực nước biển thì độ cao sẽ âm. Hãy tìm hai vị trí có tổng khoảng cách xa mực nước biển nhất (kể cả dưới mực nước biển và trên mực nước
+biển), nghĩa là tìm hai vị trí i và j sao cho |ai + aj| lớn nhất. An có vẻ thấy khó khăn trước bài toán này vì không thể dễ dàng tính nhẩm được nữa.
+Vì thế An cần một cái máy tính và khả năng lập trình của các bạn. Bạn hãy giúp An nhé.
+Dòng 1 ghi số nguyên n (0 < n < 2*10^5 )
+Dòng 2 ghi n số nguyên 32 bit cách nhau một dấu cách trống là các độ cao.
+Một dòng ghi giá trị là tổng khoảng cách - cách xa nhất mặt nước biển của hai vị trí bất kỳ.
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+long long n, a[nmax];
+int main()
+{
+    cin>>n;
+    for(int i = 1; i <= n ; i++)
+        cin>>a[i];
+    sort( a+1, a+n+1);
+    cout<< max( abs(a[1] + a[2] ), abs(a[n] + a[n-1]) );                               // so sánh 2 giá trị tuyệt đối của 2 phần tử đầu và cuối, lấy cái lớn hơn
+}
+
+
+              -------------------------------------------------------------------------------------------------------------
+
+
+PHẦN TỬ Ở GIỮA 
+Bạn được cung cấp hai dãy số độ dài n : a1,a2,...,an và b1,b2,....,bn
+Đếm số lượng số nguyên x thỏa mãn điều kiện:
+  ai <= x <= bi với tất cả mọi i (1 <= i <= n)
+Dòng đầu tiên ghi số nguyên n (1 <= n <= 100)
+Dòng thứ hai ghi n số nguyên a1,a2,...,an
+Dòng thứ ba ghi n số nguyên b1,b2,...,bn (1 <= ai,bi <= 1000)
+In x
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+long long n, a[nmax] , b[nmax];
+int main()
+{
+    cin >> n ;
+    for(int i = 1 ; i <= n ; i++) cin >> a[i];
+    for(int i = 1 ; i <= n ; i++) cin >> b[i];
+    ll x = *max_element(a+1,a+1+n);
+    ll y = *min_element(b+1,b+1+n);
+    if(y-x+1 <= 0) cout << 0;
+    else cout << y-x+1;
+}
+
+
+             ------------------------------------------------------------------------------------------------------------
+
+
+SẮP XẾP THEO BỘ 
+Cho hai dãy số nguyên dương gồm n phần tử a1,a2,...,an và b1,b2,...,bn . Đặt ci = (ai,bi) tức là khi sắp xếp lại dãy c theo một thứ tự nào
+đó, giá trị bi luôn theo kèm và phụ thuộc với giá trị ai . Bạn cần sắp xếp dãy c thỏa mãn với mọi cặp i và j mà (1 <= i < j <= n) thì ai < aj
+hoặc (ai = aj và bi >= bj)
+Dòng đầu tiên ghi số nguyên dương n (n <= 10^5)
+Dòng thứ hai ghi n số nguyên dương a1,a2,...,an (ai <= 100)
+Dòng thứ ba ghi n số nguyên dương b1,b2,...,bn (bi <= 100)
+Gồm n dòng, dòng thứ i chứa hai phần tử ai và bi sau khi sắp xếp.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[nmax] , b[nmax] , n ;
+pair<int,int> c[nmax] ;                                         // tạo pair để nó sắp xếp theo cặp 
+ll cmp(pair<int,int>a , pair<int,int>b)
+{
+    if(a.first != b.first) return b.first > a.first;           // nếu a[i] khác a[j] thì đưa phần tử lớn hơn lên trước 
+    else
+    { 
+        return a.second >= b.second ;                          // nếu a[i] bằng a[j] và b[i] >= b[j] thì đưa phần tủ lớn hơn của b lên trên
+    }
+}
+int main()
+{
+    cin>>n;
+    for(int i = 1 ; i <= n ; i++) cin>>a[i];
+    for(int i = 1 ; i <= n ; i++) cin>>b[i] , c[i] = {a[i],b[i]} ;
+    sort(c+1,c+n+1,cmp);
+    for(int i = 1 ; i <= n ; i++)
+        cout<< c[i].first << " " << c[i].second << endl;
+
+}
+
+
+             -----------------------------------------------------------------------------------------------------------
+
+
+XẾP HẠNG
+Kì thi lập trình thi đấu Nghệ An mở rộng lần thứ nhất, có n thí sinh tham gia. Cuộc thi lần này An cũng tham gia để thử sức. Sau khi kết thúc kì thi,
+các thí sinh đều biết điểm của mình. Trong lúc chờ kết quả chính thức từ BTC, An muốn biết mình xếp thứ hạng bao nhiêu trong n thí sinh tham gia.
+Lưu ý, các bạn bằng điểm nhau sẽ có thứ hạng như nhau.
+Dòng đầu tiên ghi hai số nguyên dương n , x (1 <= n <= 10^5) (0 <= x <= 20)
+Dòng thứ hai ghi n-1 số nguyên dương ai (0 <= ai <= 20)  là số điểm của n-1 thí sinh còn lại.
+In ra thứ hạng của bạn An.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll n , x, a[nmax],d=1;
+int main()
+{
+	cin>>n>>x;
+	for(int i = 1 ; i <= n-1 ; i++)
+		{
+			cin>>a[i];
+			if(a[i]>x) d++;
+		}
+	cout << d;
+	
+}
+
+
+             -------------------------------------------------------------------------------------------------------------
+
+
+ SẮP XẾP GIÁ TRỊ CHẴN - LẺ
+Viết chương trình nhập vào n (0 <= n <= 10^6) số nguyên. Sắp xếp các phần tử có giá trị lẻ trong mảng theo thứ tự tăng dần, các phần tử chẵn theo thứ tự giảm dần.
+Dòng đầu tiên ghi số nguyên không âm n.
+Dòng 2 ghi n số nguyên dương 64 bit cách nhau một dấu cách trống.
+Kết quả:
+Dòng thứ nhất gồm các phần tử lẻ được sắp xếp theo thứ tự tăng dần.
+Dòng thứ hai gồm các phần tử chẵn được sắp xếp theo thứ tự giảm dần.
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define nmax 1000006
+#define ll long long
+ll n, a[nmax], b[nmax],c[nmax], d=0, e=0;
+int main()
+{
+    cin>>n;
+    for(ll  i = 1 ; i <= n ; i++)
+    {
+        cin>>a[i];
+        if(a[i] %2 == 0)
+        {
+            e++;
+            c[e] = a[i];
+        }
+        else
+		{
+            d++;
+            b[d] = a[i];
+        }
+    }
+    sort(b+1,b+1+d);
+    sort(c+1,c+1+e, greater<ll >());
+    for(ll  i = 1; i <= d ;i++)
+    {
+        cout<<b[i]<<" ";
+    }
+    cout<<"\n";
+    for(ll  i = 1 ; i <= e ; i++)
+    {
+        cout<<c[i]<<" ";
+    }
+
+}
+
+
+             ------------------------------------------------------------------------------------------------------------
+
+
+  BUBBLE SORT 1
+Cho một dãy số gồm n số nguyên, hãy in ra số lần biến đổi dãy bằng cách dùng bubble sort với giải thuật như sau để có được một dãy số tăng dần.
+Sử dụng hàm : for(i,1,n)
+                  for(j,i+1,n)
+                      if(a[i]>a[j]) swap(a[i],a[j])
+Dữ liệu
+Dòng đầu tiên ghi số nguyên dương n (n <= 10^3)
+Dòng thứ 2 ghi n số nguyên ai ( |ai| <= 1000)
+Kết quả
+In ra một số nguyên duy nhất là kết quả của bài toán.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll n , a[10006] ;
+int main()
+{
+	cin>>n;
+	for(int i=1;i<=n;i++)
+		cin>>a[i];
+	ll d=0;
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=i+1;j<=n;j++)
+		{
+			if(a[i]>a[j]){
+				swap(a[i],a[j]);
+				d++;
+			} 
+		}
+	}
+	cout<<d;
+}
+
+
+             -------------------------------------------------------------------------------------------------------------
+
+
+  BUBBLE SORT 2
+Cho một dãy số, hãy in ra các bước sắp xếp dãy số đó thành một dãy số tăng dần dẫn bằng cách dùng bubble sort và sắp xếp từ trên xuống.
+Sắp xếp từ trên xuống có giải thuật như sau:
+      for (int i = n; i >= 2; i--)
+          for (int j = 1; j < i; j++)
+              if ( a[j] > a[j+1] ) swap(a[j],a[j+1]);
+Dữ liệu
+Dòng đầu tiên ghi một số nguyên dương n (n <= 100)
+Dòng tiếp theo ghi n số nguyên dương ai (ai <= 10^3)
+Kết quả
+In ra trên nhiều dòng, mỗi dòng là một bước chuyển đổi.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll n , a[10006] ;
+int main()
+{
+	cin>>n;
+	for(int i=1;i<=n;i++)
+		cin>>a[i];
+	for (int i = n; i >= 2; i--)
+	{
+		for (int j = 1; j < i; j++)
+		{
+			if ( a[j] > a[j+1] ) 
+			{
+				swap(a[j],a[j+1]);
+				for(int i=1;i<=n;i++)
+			    	cout << a[i]<<" ";
+				cout<<"\n";
+			}
+			
+		}
+        
+	}
+    
+}
+
+
+              -----------------------------------------------------------------------------------------------------------
+
+
+   BUBBLE SORT 3
+Cho một dãy số, hãy in ra các bước sắp xếp dãy số đó thành một dãy số tăng dần dẫn bằng cách dùng bubble sort và sắp xếp từ dưới lên.
+Sắp xếp từ dưới lên có giải thuật như sau:
+      for (int i = 1; i <= n-1; i++)
+          for (int j = n-1; j >= i; j--)
+              if ( a[j] > a[j+1] ) swap(a[j],a[j+1]);
+Dữ liệu
+Dòng đầu tiên ghi một số nguyên dương n (n <= 100)
+Dòng tiếp theo ghi n số nguyên dương ai (ai <= 10^3)
+Kết quả
+In ra trên nhiều dòng, mỗi dòng là một bước chuyển đổi.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+ll n , a[10006] ;
+int main()
+{
+	cin>>n;
+	for(int i=1;i<=n;i++)
+		cin>>a[i];
+	for (int i = 1; i <= n-1; i++)
+	{
+		for (int j = n-1; j >= i; j--)
+		{
+			if ( a[j] > a[j+1] ) 
+			{
+				swap(a[j],a[j+1]);
+				for(int i=1;i<=n;i++)
+			    	cout << a[i]<<" ";
+				cout<<"\n";
+			}
+			
+		}
+        
+	}
+    
+}
+
+
+             ----------------------------------------------------------------------------------------------------------
+
+  SẮP XẾP SỐ LẺ
+Cho dãy a gồm n phần tử a1,a2,...,an.
+Hãy sắp xếp các phần tử lẻ trong mảng theo thứ tự tăng dần.
+Input
+Dòng đầu tiên ghi số nguyên n (n <= 100)
+Dòng tiếp theo ghi n số nguyên a1,a2,...,an.
+Kết quả
+In ra mảng sau khi sắp xếp.
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll n , a[nmax];
+int main()
+{
+	cin>>n;
+	for(int i = 1 ; i <= n ; i++)
+	{
+		cin>>a[i];
+	}
+	for(int i = 1 ; i <= n ; i++)
+	{
+		for(int j = i + 1 ; j <= n ; j++)
+		{
+			if( a[i]%2!=0  &&  a[j]%2!=0  &&  a[i]>a[j] )
+				swap(a[i],a[j]);
+		}
+	}
+	for(int i = 1 ; i <= n ; i++)
+		cout << a[i] << " ";
+}  
+
+
+
+
+    
