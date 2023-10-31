@@ -1,0 +1,310 @@
+   TÌM KIẾM 1 - GCD TRÊN MẢNG
+Cho một dãy số a gồm n số nguyên dương và số nguyên x . Hãy viết chương trình tìm trong dãy tất cả các số có gcd(ai,x) > 1. Với gcd(x,y) là ước chung lớn nhất của x và y.
+Dữ liệu
+Dòng đầu ghi ghi hai số nguyên dương n , x (n,x <= 1000)
+Dòng thứ hai ghi n số nguyên dương a1,a2,...,an (ai <= 1000)
+Kết quả
+Một dòng duy nhất ghi vị trí tất cả các số có gcd(ai,x) > 1 theo thứ tự xuất hiện trong dãy số.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[nmax] , n ,x,d=0;
+int main()
+{
+    cin >> n >> x;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin>>a[i];
+        if(__gcd(a[i],x)  > 1) cout << i << " " ;
+    }
+
+
+}
+
+
+               ------------------------------------------------------------------------------------------------------------
+
+
+   TÌM KIẾM 2 - SỐ XUẤT HIỆN TRONG MẢNG 
+Cho một dãy gồm n số nguyên dương và hai số nguyên dương l và r Hãy viết chương trình tìm những số thuộc đoạn [l,r] mà chưa có trong dãy đã cho.
+Dữ liệu
+Dòng đầu tiên ghi ba số nguyên dương n,l,r (n,l,r <= 10^3)
+Dòng thứ hai ghi n số nguyên a1,a2,...,an (1 <= ai <= 10^3)
+Kết quả
+In ra trên một dòng tất cả các số thuộc đoạn [l,r] mà chưa xuất hiện trong dãy số theo thứ tự tăng dần.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[1005] , n ,l,r;
+bool check(int x)
+{
+    for(int i = 1 ; i <= n ;i++)
+        if(a[i] == x) return true;
+    return false;
+}
+int main()
+{
+    cin >> n >> l >>r;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin>>a[i];
+
+    }
+    for(int i=l;i<=r;i++)
+    {
+        if(!check(i)) cout<<i<<" ";
+    }
+
+}
+
+
+               -----------------------------------------------------------------------------------------------------------
+
+   BS1 - TÌM KIẾM NHỊ PHÂN BẰNG X
+Cho dãy số a1,a2,...,an. và t giá trị x. . Hãy tìm xem trong dãy số có tồn tại phần tử bằng x hay không.
+Input Specification
+Dòng đầu ghi số nguyên dương n là số phần tử (0 < n <= 10^5)
+Dòng 2 ghi n số nguyên dương là dãy số a1,a2,...,an (ai <= 10^18)
+Dòng 3 ghi số nguyên dương t (0 <= t <= 10^5) là số test case
+t dòng sau mỗi dòng ghi số nguyên dương x (0 < x <= 10^18)
+Output Specification
+in ra t dòng, dòng thứ i ghi số kết quả tương ứng Y nếu tồn tại x trong dãy và ghi N nếu không tồn tại.
+
+#include <bits/stdc++.h>
+using namespace std;
+#define nmax 100006
+#define ll long long
+ll n , a[nmax]  , t ,k;
+bool tknp( ll x )
+{
+    int dau = 1 , cuoi = n , giua;
+    while(dau <= cuoi)
+    {
+        giua = (dau + cuoi)/2;
+        if(a[giua] == x) return true;
+        if(a[giua] > x) cuoi = giua - 1;
+        if(a[giua] < x) dau = giua + 1;
+    }
+    return false;
+}
+int main()
+{
+    cin >> n;
+    for(int i = 1 ; i <= n ; i++)
+    {
+        cin >> a[i];
+    }
+    sort(a+1,a+n+1);
+    cin >> t;
+    while(t--)
+    {
+        cin>>k;
+        if(tknp(k)) cout<<"Y\n";
+        else cout << "N\n" ;
+    }
+}
+
+
+             ------------------------------------------------------------------------------------------------------------
+
+   BS2 - TÌM KIẾM NHỊ PHÂN 2 : LỚN HƠN X 
+Cho dãy số u = n^2 + 1 và giá trị x. Hãy tìm phần tử của dãy số nhỏ nhất thỏa mãn lớn hơn hoặc bằng x.
+Để chặt nhị phân phần tử nhỏ nhất lớn hơn x ta sử dụng hàm sau:
+      ll  chat1(ll x)
+            {
+              ll dau = 1, cuoi = n;
+              while(dau<=cuoi)
+              {
+                  ll giua = (dau + cuoi)/2;
+                  if(a[giua]>=x) 
+                  {
+                      kq = a[giua];
+                      cuoi = giua - 1;
+                  }
+                  else
+                      dau = giua + 1;
+              }
+              return kq;
+          }
+Input Specification
+Dòng đầu ghi số nguyên dương n (0 < <= 10^6)
+Dòng 2 ghi số nguyên dương t (0 < t <= 10^5)
+t dòng sau mỗi dòng ghi số nguyên dương x (0 < x <= 10^12)
+Output Specification
+In ra t dòng, dòng thứ x ghi số kết quả tương ứng là phần tử nhỏ nhất của dãy số lớn hơn hoặc bằng x tương ứng.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 1000006
+ll a[nmax] , n ;
+ll  chat1(ll x)
+    {
+        ll dau = 1, cuoi = n,kq=-1;
+        while(dau<=cuoi)
+        {
+            ll giua = (dau + cuoi)/2;
+            if(a[giua]>=x) 
+            {
+                kq = a[giua];
+                cuoi = giua - 1;
+            }
+            else
+                dau = giua + 1;
+        }
+        return kq;
+    }
+int main()
+{
+	cin >> n;
+	for(ll i = 1 ; i <= n ; i++)
+	{
+		a[i] = i*i + 1;
+	}
+	ll t;
+	cin >> t ;
+	while(t--)
+	{
+		ll x;
+		cin>>x;
+		cout<< chat1(x) << endl;
+	}
+	
+}
+
+
+             -----------------------------------------------------------------------------------------------------------
+
+
+   BS3 - TÌM KIẾM NHỊ PHÂN 3 : BÉ HƠN X
+Cho dãy số a1,a2,...,an. và t giá trị x. . Hãy tìm xem trong dãy số có tồn tại phần tử bé hơn hoặc x hay không.
+Input Specification
+Dòng đầu ghi số nguyên dương n là số test (0 < n <= 10^5)
+Dòng 2 ghi n số nguyên dương là dãy số a1,a2,...,an (ai <= 10^18)
+Dòng 3 ghi số nguyên dương t (0 <= t <= 10^5).
+t dòng sau mỗi dòng ghi số nguyên dương x (0 < x <= 10^18)
+Output Specification
+in ra t dòng dòng thứ i ghi giá trị lớn nhất trong dãy nhở hơn hoặc bằng x và ghi -1 nếu không tồn tại.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 100006
+ll a[nmax] , n ;
+int main()
+{
+	cin >> n;
+	for(ll i = 1 ; i <= n ; i++)
+	{
+		cin>>a[i] ;
+	}
+	sort(a+1,a+n+1);
+	ll t;
+	cin >> t ;
+	while(t--)
+	{
+
+		ll k;
+		cin>>k;
+		ll dau = 1, cuoi = n,kq=-1;
+        while(dau<=cuoi)
+        {
+            ll giua = (dau + cuoi)/2;
+            if(a[giua]<=k)
+            {
+                kq = a[giua];
+                dau = giua + 1;
+
+            }
+            else cuoi = giua - 1;
+
+        }
+        cout<<kq<<endl;
+	}
+
+}
+
+
+              -----------------------------------------------------------------------------------------------------------
+
+
+   BS4 - TÌM KIẾM NHỊ PHÂN 4 : TRỊ TUYỆT ĐỐI         
+Cho dãy số a1,a2,...,an và giá trị x. . Hãy tìm giá trị nhỏ nhất của |ai - x| với mọi giá trị i.
+Input Specification
+Dòng đầu ghi số nguyên dương n (0 < n <= 10^5)
+Dòng 2 ghi n số nguyên dương là dãy số a1,a2,...,an(0 < |ai| <= 10^12)
+Dòng 3 ghi số nguyên dương t (0 <= t <= 10^5).
+t dòng sau mỗi dòng ghi số nguyên dương x (0 < |x| <= 10^12)
+Output Specification
+in ra t dòng, mỗi dòng ghi giá trị nhỏ nhất của |ai - x| với i = 1 -> n cho giá trị x tương ứng.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nmax 100006
+ll a[nmax] , n ;
+ll np1(ll x)
+{
+    ll dau = 1, cuoi = n,kq;
+        while(dau<=cuoi)
+        {
+            ll giua = (dau + cuoi)/2;
+            if(a[giua]>=x)
+            {
+                kq = a[giua];
+                cuoi = giua - 1;
+
+
+            }
+            else dau = giua + 1;
+        }
+        return kq;
+}
+ll np2(ll k)
+{
+    ll dau = 1, cuoi = n,kq1;
+        while(dau<=cuoi)
+        {
+            ll giua = (dau + cuoi)/2;
+            if(a[giua]<=k)
+            {
+                kq1 = a[giua];
+                dau = giua + 1;
+
+
+            }
+            else cuoi = giua - 1;
+        }
+        return kq1;
+}
+
+int main()
+{
+	cin >> n;
+	for(ll i = 1 ; i <= n ; i++)
+	{
+		cin>>a[i] ;
+	}
+	sort(a+1,a+n+1);
+	ll t;
+	cin >> t ;
+	while(t--)
+	{
+
+		ll x;
+		cin>>x;
+        ll m = np1(x);
+        ll n = np2(x);
+        cout<<min(abs(m-x), abs(x-n)) <<"\n";
+	}
+
+}
