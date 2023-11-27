@@ -1,0 +1,73 @@
+  ĐẾM SỐ XÂU 
+Cho n (1 <= n <= 20) là số lượng chữ cái phân biệt và k (1 <= k <= n) , yêu cầu đếm xem có bao nhiêu cách tạo ra một xâu ký tự có độ dài k và có k ký tự khác nhau từ n ký tự đã cho
+
+
+n,k = map(int,input().split())
+def gt(n):
+    if n == 0:
+        return 1
+    return n * gt(n - 1)
+print((gt(n))//(gt(n-k)))
+
+
+          ---------------------------------------------------------------------------------------------------------------
+
+  BỘ 3 SỐ A,B,C
+Sau một kì nghỉ hè dài, khi gặp lại các bạn Hoàng rất vui mừng. Anh ấy đưa ra một bài toán hay và đố các bạn giải quyết chúng. Bài toán như sau:
+Cho 2 số nguyên không âm P và Q  Hãy đếm số bộ ba số không âm (a,b,c) thỏa mãn a+b+c <= P , a*b*c <= Q
+Dữ liệu
+Một dòng duy nhất gồm 2 số nguyên không âm P,Q (0 <= P <= 2*10^3 , 0 <= Q <= 10^8)
+
+
+p,q = map(int,input().split())
+dem=0
+for i in range(0,p+1):
+    for j in range(0,p-i+1):
+        if (i*j)==0: dem += p-i-j+1
+        else: dem += min(q//(i*j) +1, p-i-j+1)
+print(dem)
+
+
+          ----------------------------------------------------------------------------------------------------------------
+
+  ƯỚC LẺ
+Xác định ước lẻ lớn nhất của một số n cho trước.
+Dữ liệu
+Một số nguyên n (n <= 10^18)
+
+n = int(input())
+while n%2==0:
+    n//=2
+print(n)
+
+          -----------------------------------------------------------------------------------------------------------------
+
+  A179C - SỐ BỘ ABC
+Cho một số nguyên dương n
+Đếm xem có bao nhiêu bộ 3 số A,B,C thỏa mãn A*B+C = n
+Một dòng duy nhất là số nguyên dương n (2 <= n <= 10^6)
+In ra kết quả bài toán chia lấy dư cho 10^9 + 7
+
+n = int(input())
+dem=0
+for i in range(1,n+1):
+    dem+=(n-1)//i
+print(dem%(1000000000+7))
+
+         ------------------------------------------------------------------------------------------------------------------
+
+  DẾ MÈN
+Dế mèn muốn tích trữ cỏ để đến mùa đông khi mà thời tiết băng giá, cây cỏ khô héo còn có cái để ăn.
+Vào ban ngày dế mèn đi tìm bãi cỏ non ăn tại đó và mang về tổ được A lá cỏ non, ban đêm dế mèn ăn hết B lá cỏ non.
+Lập trình cho biết đến ngày thứ bao nhiêu thì trong tổ của dế mèn có ít nhất M lá cỏ.
+Từ bàn phím một dòng gồm ba số nguyên dương A,B,M (0 <= B < A <= 10^9 , M <= 10^18)
+
+a = int(input())
+b = int(input())
+m = int(input())
+t = (m-a)//(a-b)
+if ((m-a)%(a-b))==0: print(t+1)
+else: print(t+2)
+
+
+
