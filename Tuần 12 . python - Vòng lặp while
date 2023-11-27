@@ -1,0 +1,79 @@
+  TÍNH TỔNG ĐẾN KHI LỚN HƠN A
+Cho S = 1 + 1/2 + 1/3 + ... + 1/n. Nhập vào số thực A ãy tìm số nguyên dương n nhỏ nhất sao cho S > A.
+Một dòng ghi số A duy nhất  (Dữ liệu đảm bảo số bước lặp không quá 10^6)
+
+a = float(input())
+s = 0
+n = 0
+while s <= a:
+    n += 1
+    s += 1.0/n 
+print(n)
+
+
+              ----------------------------------------------------------------------------------------------------------
+
+  TỔNG ĐẦU 
+Viết chương trình tìm số nguyên k sao cho tổng từ 1 đến k bằng n cho trước.
+Dữ liệu 1 số nguyên dương n (n<=10^6).
+In ra YES nếu tồn tại k, in ra NO nếu không tồn tại k.
+
+n = int(input())
+k = 1
+while (k*(k+1)/2) < n:
+    k += 1
+if (k*(k+1)/2) > n: print("NO")
+else: print("YES")
+
+              ------------------------------------------------------------------------------------------------------------
+
+    TỔNG KHÔNG BIẾT SỐ PHẦN TỬ
+Viết chương trình tính tổng của một dãy số nguyên chưa biết trước số phần tử.
+Một dòng ghi không quá 10^5 phần tử là các số nguyên 32 bit cách nhau ít nhất một dấu cách trống.
+Ghi ra kết quả là tổng của các số nguyên trên.
+
+n = input()
+a = list(map(int,n.split()))
+s = 0
+for i in range(0,len(a)):
+    s += a[i]
+print(s)
+
+
+              -----------------------------------------------------------------------------------------------------------
+
+  BS1 - TÌM KIẾM NHỊ PHÂN 1 - BẰNG X
+Cho dãy số a1,a2,...,an. và t giá trị x.Hãy tìm xem trong dãy số có tồn tại phần tử bằng x hay không.
+Dòng đầu ghi số nguyên dương n là số phần tử (0 < n <= 10^5)
+Dòng 2 ghi n số nguyên dương là dãy số a1,a2,...,an. (0 < ai < 10^18)
+Dòng 3 ghi số nguyên dương t (0 < t <= 10^5) là số test case
+t dòng sau mỗi dòng ghi số nguyên dương x (x <= 10^18)
+in ra t dòng, dòng thứ i ghi số kết quả tương ứng Y nếu tồn tại x trong dãy và ghi N nếu không tồn tại.
+
+def np(x):
+    l = 0 ; r = n - 1
+    while l <= r:
+        k = (l+r)//2
+        if x == a[k]:
+            return True
+        if a[k] < x:
+            l = k+1 
+        if a[k] > x:
+            r = k - 1 
+    return False
+n = int(input())
+a = list(map(int,input().split()))
+t = int(input())
+a.sort()
+while t > 0:
+    x = int(input())
+    if np(x):
+        print("Y")
+    else:
+        print("N")
+    t = t-1
+
+
+
+
+
