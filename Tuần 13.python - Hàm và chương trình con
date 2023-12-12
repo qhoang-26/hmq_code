@@ -1,0 +1,192 @@
+      HSG LỚP 9 TP VINH 2023 - BÀI 1: TRỒNG CÂY XANH
+Để chuẩn bị cho Lễ kỉ niệm 60 năm thành lập Thành phố, công ty Cây Xanh đã cho trồng lại toàn bộ cây xung quanh khu vực Quảng Trường, tiêu chí lựa chọn cây được đưa ra như sau: Trong số N
+cây có ở vườn ươm sẽ chọn các cây có chiều cao tương ứng chênh lệch không quá m ( cm) so với chiều cao l của một cây cho trước.
+Dòng đầu gồm 3 số n,l,m (n <= 10^5 , m <= 10^9) gồm n cây để lựa chọn, chiều cao l cho trước và độ chênh lệch m
+Dòng sau gồm n số nguyên dương đi là chiều cao của n cây để lựa chọn (ai <= 10^9)
+Một số nguyên duy nhất cho biết số cây được lựa chọn để trồng.
+
+
+n,l,m = map(int,input().split())
+a = list(map(int,input().split()))
+d = 0 
+for i in a:
+    if abs(i-l) <= m:
+        d = d + 1
+print(d)
+
+
+                    --------------------------------------------------------------------------------------------------------
+
+      HSG LỚP 9 TP VINH 2023 - BÀI 2: TÌM SỐ NGUYÊN TỐ LỚN NHẤT
+Cho xâu kí tự S gồm n kí tự chỉ gồm chữ cái và chữ số. Em hãy thực hiện hai thao tác sau:
+Thao tác 1: Đếm các kí tự là kí tự số trong xâu s
+Thao tác 2: Tìm số a rong xâu kí tự s là số nguyên tố lớn nhất. Số a là tất cả các kí tự số liên tiếp trong xâu s và không có số 0 vô nghĩa ở đầu.
+OUTPUT
+Dòng đầu chứa số lượng kí tự số trong xâu s
+Dòng thứ hai chứa số a tìm được. Nếu không tìm được số a nguyên tố thì in ra 0
+
+
+import math
+def nt(x):
+    if x < 2 : return False
+    for i in range (2,int(math.sqrt(x)+1)):
+        if x % i == 0: return False
+    return True
+n = input()
+d = 0
+ans = 0
+k = 0
+for i in n:
+    if i >= '0' and i <= '9':
+        d+=1 
+        k = int(k*10+int(i))
+    else:
+        if k > 0 and nt(k) : ans = max(ans,k)
+        k = 0 
+print(d,end='\n')
+print(ans)
+
+
+                    -------------------------------------------------------------------------------------------------------
+
+
+      HSG LỚP 9 TP VINH 2023 - BÀI 3: KHEN THƯỞNG THEO GIỜ LÀM VIỆC
+Trong một công ty sản xuất thức ăn nhanh làm việc theo dây chuyền, số giờ làm việc của các công nhân hàng tháng được tổ trưởng tính và ghi ra 
+bảng thành 1 dãy số theo thứ tự vị trí của từng công nhân.
+Cuối tháng tổ trưởng muốn khen thưởng các nhóm công nhân có tổng số giờ làm việc bằng nhau. Các công nhân trong nhóm được sắp xếp đứng 
+liên tiếp gần nhau (số lượng công nhân trong các nhóm có thể khác nhau). Em hãy giúp tổ trưởng chia thành nhiều nhóm nhất sao cho các nhóm 
+đều có tổng số giờ làm việc bằng nhau.
+IN
+  Dòng đầu ghi số n (số lượng công nhân, n <= 100)
+  Các dòng còn lại ghi các số a1,a2,...,an (Số giờ làm việc của từng công nhân hàng tháng), các số trên cùng một dòng cách nhau một dấu cách trống.
+OUT
+    Gồm k+1 dòng (k là số nhóm công nhân chia được nhiều nhất) như sau:
+        Dòng đầu ghi hai số k và s (s  là tổng số giờ làm việc của các nhóm).
+        k dòng còn lại mỗi dòng ghi số giờ của mỗi công nhân trong từng nhóm được chia, các số trên cùng một dòng cách nhau một dấu cách trống.
+
+
+import sys
+sys.stdin = open("chiagio.inp", "r")
+sys.stdout = open("chiagio.out", "w")
+
+n = int(input())
+a = list(map(int,input().split()))
+s,cnt,check = 0,0,0
+for i in range(n):
+    s += a[i]
+    cnt,check = 1,0
+    for j in range(i+1,n):
+        check += a[j]
+        if check == s:
+            cnt += 1 
+            check = 0
+    if check != 0:continue
+    print(cnt,s)
+    for j in range(n):
+        check += a[j]
+        print(a[j],end=" ")
+        if check == s: print();check = 0
+    break
+
+
+                    --------------------------------------------------------------------------------------------------------
+
+
+      SỐ TRÒN CHỤC
+Số tròn chục là số có chữ số hàng đơn vị là chữ số 0.
+Cho hai số tự nhiên l và r. Hãy đếm xem có bao nhiêu số tròn chục lớn hơn l và nhỏ hơn r
+1 < l < r <= 10^12
+
+
+
+l = int(input())
+r = int(input())
+if r%10 == 0:
+    print(r//10 - l//10 - 1)
+else:
+    print(r//10 - l//10)
+
+
+                    --------------------------------------------------------------------------------------------------------
+
+
+      ĐỘNG ĐẤT
+Độ mạnh của 1 trận động đất được tính dựa trên lượng năng lượng mà nó giải phóng ra. Biết rằng với mỗi lần độ mạnh của trận động đất tăng lên 1 
+thì lượng năng lượng nó giải phóng gấp lên gần 32 lần.
+Giả sử lượng nặng lượng giải phóng ra chính xác bằng 32 lần với mỗi lần tăng độ mạnh của động đất. Hãy tính xem năng lượng giải phóng của 
+trận động đất độ mạnh A gấp bao nhiêu lần năng lượng giải phóng của trận động đất độ mạnh B
+IN
+  1 dòng duy nhất ghi 2 số nguyên lần lượt là độ mạnh của 2 trận động đất độ mạnh A là B (3 <= B <= A <= 9)
+
+a , b = map(int,input().split())
+print(32**a // 32**b)
+
+                    ------------------------------------------------------------------------------------------------------
+
+
+      SỐ DUY NHẤT
+Bạn được cung cấp một số nguyên dương x  Hãy tìm số nhỏ nhất sao cho tổng chữ số của số đó bằng x và các chữ số của nó đôi một khác nhau(duy nhất).
+IN 
+  Dòng đầu tiên ghi số nguyên dương t (t <= 50) là số testcase.
+  Mỗi testcase chứa một số nguyên (1 < x <= 50)
+OUT
+  In ra số nhỏ nhất thỏa mãn yêu cầu bài toán ứng với mỗi testcase, nếu không có số nào thỏa mãn thì in ra -1
+
+
+t = int(input())
+for i in range(t):
+    a = int(input())
+    if a > 45:
+        print(-1)
+    else:
+        m = 9
+        kq = chr(min(a,m) + 48)
+        a = a - min(m,a)
+        m = m-1
+        while a > 0:
+            kq = chr(min(a,m) + 48) + kq
+            a -= min(a,m)
+            m -= 1 
+        print(kq)
+
+
+                    ------------------------------------------------------------------------------------------------------
+
+
+      BÀI TẬP CUỐI CÙNG 
+  Michael có K bài tập muốn phát cho n bạn học sinh đã được đánh dấu từ 1->n
+  Bắt đầu với bạn học sinh thứ a  tiếp tục Michael sẽ phát cho bạn thứ a+1 , a+2 , ..., n , 1 , 2,...
+  Biết rằng bài cuối cùng là bài rất khó. Hãy tìm ra bạn học sinh “may mắn” được phát bài tập này nhá.
+  1 <= n,k <= 1000
+  1 <= a <= n 
+
+
+n,k,a = map(int,input().split())
+shs = n - a + 1 
+k = k - shs
+if k%n == 0:
+    print(n)
+else:
+    print(k%n)
+
+
+                    -------------------------------------------------------------------------------------------------------
+
+      MƯỜI NGÀN ĐỒNG 
+Michael muốn đổi một món đồ cũ ở nhà để mua cái thay thế tốt hơn. Biết rằng món đồ cũ của anh ấy có giá trị a nghìn đồng.
+Món đồ mới có giá là b nghìn đồng. Để mua được nó anh cần bán món đồ cũ đi và có thể phải bỏ thêm tiền nếu cần.
+Micheal là đại gia tiền 10.000đ. Hỏi anh ấy cần ít nhất bao nhiều tờ 10.000đ để ít nhất đủ số tiền mua món đồ mới.
+1 <= a,b <= 1000
+
+
+a , b = map(int,input().split())
+k = a - b 
+if k >= 0:
+    print('0')
+else :
+    k= abs(k)
+    if k % 10 == 0:
+        print(k//10)
+    else :
+        print(k//10 + 1)
+  
