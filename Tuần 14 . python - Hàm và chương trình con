@@ -1,0 +1,161 @@
+      SỐ BƯỚC ĐI CỦA RÙA
+Trên mặt phẳng tọa độ Oxy, Rùa sống tại điểm có tọa độ (0, 0), Thỏ sống tại điểm có tọa độ (a, b). Hôm nay, Rùa nhận lời đến dự sinh nhật Thỏ. 
+Rùa đi khá chậm, trong mỗi bước, Rùa chỉ có thể di chuyển 1 đơn vị độ dài theo một trong các hướng ngang hoặc dọc. Nói cách khác, từ vị trí (x, y),
+trong một bước đi, Rùa chỉ có thể đi đến một trong các vị trí (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1).
+Rùa khá kém trong việc xác định hướng. Vì vậy, cậu ta chọn ngẫu nhiên hướng đi trong mỗi bước. Cậu ta có thể vô tình quay về nhà trong chuyến 
+đi của mình, thậm chí có thể không biết rằng đã đến nhà Thỏ tại điểm (a, b) mà lại tiếp tục đi.
+May mắn là, cuối cùng Rùa đã đến nhà thỏ tại vị trí (a, b). Rùa nói với Thỏ: “Tớ phải mất đúng s bước để đi từ nhà tớ đến nhà bạn”. Thỏ thì không 
+chắc chắn về số bước đi mà Rùa đã nói. Hãy giúp Thỏ kiểm tra câu nói của Rùa về số bước đi từ nhà Rùa đến nhà Thỏ?
+Ràng buộc
+-10^9 <= a,b <= 10^9 , 1 <= s <= 2*10^9
+Nếu bạn nghĩ Rùa đã nhầm và không thể thực hiện chính xác s bước đi từ nhà Rùa đến nhà Thỏ, thì hãy in ra “No”. Ngược lại, hãy in ra từ “Yes”.
+
+
+def check(a, b, s):
+    kc = abs(a) + abs(b)
+    if kc > s:
+        return "No"
+    elif (s - kc) % 2 == 0:
+        return "Yes"
+    else:
+        return "No"
+
+a, b, s = map(int, input().split())
+
+kq = check(a, b, s)
+print(kq)
+
+
+                      ---------------------------------------------------------------------------------------------------
+
+      RÙA VÀ THỎ
+Ở một khu rừng nọ có hai bạn bạn Rùa và Thỏ tổ chức một cuộc thi chạy trên một đường thẳng rất dài. Bạn Rùa miệt mài chạy liên tục không nghỉ với tốc độ không đổi
+với a(m/s)  Bạn Thỏ vì ỷ lại có tốc độ lớn nên Thỏ chạy với quy luật lặp đi lặp lại như sau:
+          Chạy liên tục với tốc độ không đổi b(m/s) trong thời c giây.
+          Nằm nghỉ trong thời gian d giây.
+Xác định khoảng cách giữa Rùa và Thỏ sau thời gian m giây kể từ lúc Rùa và Thỏ cùng xuất phát.
+
+
+def tinh(a, b, c, d, m):
+    duongtho = a * m
+    T = c + d  
+    hetT = m // T 
+    t = m % T  
+    duongthodi = hetT * (c * b)
+    if t >= c:
+        kq1 = c * b 
+    else:
+        kq1 = t * b 
+    tongduong = duongthodi + kq1
+    kcach = abs(duongtho - tongduong)
+    return kcach
+a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+m = int(input())
+kq = tinh(a, b, c, d, m)
+print(kq)
+
+
+                    ------------------------------------------------------------------------------------------------------
+
+      NGUYÊN TỐ NHỎ HƠN N
+Cho n gọi a là số tự nhiên nhỏ nhất sao cho khi giảm n đi a đơn vị thì ta được một số nguyên tố.
+Tìm a nếu không tồn tại in -1
+
+
+import math
+def check(nt):
+    if nt<2:
+        return False
+    for i in range(2, int(math.sqrt(nt))+1):
+        if nt % i == 0:
+            return False
+    return True
+def kq(n):
+    for a in range(1,n):
+        if check(n-a):
+            return a
+    return -1
+n = int(input())
+k = kq(n)
+if check(n) == True :
+    print(0)
+else:
+    print(k)
+
+
+                      ----------------------------------------------------------------------------------------------------
+
+      SỐ NGUỒN
+Cho số nguyên dương n, ví dụ n = 836 xét tổng m = 836 + 8 + 3 +6 = 853 khi đó n là số nguồn của m
+có những số có thể có nhiều nguồn. cho trước số m(m <= 10^18) nếu có nhiều nguồn lấy nguồn nhỏ nhất
+ko tìm dc in 0
+
+
+n = int(input())
+k = n 
+i = 163
+kq = 0 
+while i:
+    i = i - 1
+    n = n - 1 
+    if n < 0: break 
+    t = n 
+    s = 0
+    while t > 0:
+        s = s + t%10
+        t = t // 10
+    if s + n == k:
+        kq = n 
+print(kq)
+
+
+                      ---------------------------------------------------------------------------------------------------
+
+      TỔNG DÃY 1
+n=int(input())
+s=input().split()
+f=[0]*(n+1)
+for i in range(0, n):
+    f[i]=f[i-1]+int(s[i])
+q=int(input())
+while q>0:
+    q=q-1
+    x=int(input())
+    print(f[x-1])
+
+
+      TỔNG DÃY 3
+def kq(a, k):
+    n = len(a)
+    t = 0
+    sc = {0: 1}  
+    c = 0  
+    for i in range(n):
+        t += a[i]
+        if t - k in sc:
+            c += sc[t - k]
+        if t in sc:
+            sc[t] += 1
+        else:
+            sc[t] = 1
+    return c
+n,k = map(int,input().split())
+a = list(map(int, input().split()))
+result = kq(a, k)
+print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
