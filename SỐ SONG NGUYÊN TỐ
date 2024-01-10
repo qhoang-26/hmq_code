@@ -1,0 +1,25 @@
+Số đảo ngược của một số là số được viết theo thứ tự ngược lại của số đó. Ví dụ: 13 đảo ngược của nó là 31
+Một số n được gọi là song nguyên tố nếu như n là số nguyên tố và số đảo ngược của nó cũng là số nguyên tố. Ví dụ: 7,13 là các 
+số song nguyên tố còn các số 8, 41 không phải là các số song nguyên tố. Cho một số nguyên dương Em hãy kiểm tra xem số n
+có phải là song nguyên tố không?
+Một dòng duy nhất chứa số nguyên dương n (n <= 2*10^9)
+In ra số 1 nếu đó là số song nguyên tố, và in ra số 0 nếu đó không phải là số song nguyên tố.
+
+
+
+def nt(x):
+    for i in range(2,int(x**0.5)+1):
+        if x%i == 0:
+            return False
+    return True
+def sodaonguoc(k):
+    s = 0
+    while k > 0:
+        d = k % 10
+        s = s*10 + d 
+        k = k // 10
+    return s
+n = int(input())
+if nt(n) == True and nt(sodaonguoc(n)) == True:
+    print(1)
+else: print(0)
