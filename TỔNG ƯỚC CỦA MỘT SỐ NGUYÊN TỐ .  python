@@ -1,0 +1,22 @@
+def thuasonguyento(n):
+    d = []
+    i = 2
+    while i <= n:
+        if n % i == 0:
+            d.append(i)
+            n //= i
+        else:
+            i += 1
+    return d
+def tong(x):
+    t = 0
+    s = set()
+    for i in x:
+        if i not in s:
+            t += i
+            s.add(i)
+    return t
+n = int(input())
+m = thuasonguyento(n)
+kq = tong(m)
+print(kq)
